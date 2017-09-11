@@ -1,0 +1,239 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Helvetica, "游ゴシック", "Yu Gothic", sans-serif;
+	width: 960px;
+	margin: 0;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0;
+	border: 0 solid #0066ff;
+	background: #fff;
+	overflow-x: hidden;
+}
+
+table {
+	margin-top: 0.5em;
+	padding-left: 90px;
+	line-height: 150%;
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid #ddd;
+}
+
+th {
+	text-align: center;
+	background: #f4f4f4;
+}
+
+/*タイトル*/
+.tytle {
+	font-size: 50px;
+	font-family: 'Oswald', sans-serif;
+	height: 100px;
+	margin: 0 -500%;
+	padding: 0 500%;
+	background-image: url("tytle_img.jpg");
+	opacity: 0.5;
+}
+
+/*メニュー*/
+.menu {
+	color: #fff;
+	font-size: 14px;
+	margin: 0 -200%;
+	padding: 0 200%;
+	*zoom: 1;
+	list-style-type: none;
+	background: #4d639f;
+}
+
+.menu:before, .menu:after {
+	content: "";
+	display: table;
+}
+
+.menu:after {
+	clear: both;
+}
+
+.menu li {
+	width: 192px;
+	float: left;
+	position: relative;
+}
+
+.menu li a {
+	color: #fff;
+	text-align: center;
+	padding: 15px 15px 15px;
+	display: block;
+	line-height: 1;
+}
+
+.menu li:hover>a {
+	background: #2c4b79;
+}
+
+.menu li a:hover {
+	background: #2c4b79;
+}
+
+/*コンテンツ*/
+.contents_outline {
+	margin: 0 -200%;
+	padding: 0 200%;
+	border: solid thin #999999;
+}
+
+.contents_table {
+	display: table-cell;
+	vertical-align: middle;
+	height: 60px;
+}
+
+/*アプリ名*/
+.section1 {
+	color: #3a614f;
+	padding-left: 30px;
+	margin-top: 1.5em;
+}
+
+/*項目*/
+.section2 {
+	margin-top: 1.5em;
+	padding-left: 60px;
+}
+
+/*文章*/
+.sentence {
+	margin-top: 0.5em;
+	padding-left: 90px;
+	line-height: 150%;
+}
+
+/*ボックス*/
+.box {
+	display: table-cell;
+	vertical-align: bottom;
+}
+
+/*ボタン*/
+.button {
+	font-size: 14px;
+	position: relative;
+	display: block;
+	height: 35px;
+	width: 110px;
+	text-decoration: none;
+	background: #3a614f;
+	color: #fff;
+	line-height: 39px;
+	text-align: center;
+	border-radius: 3px;
+	box-shadow: 1px 2px 4px #00ff80;
+	float: right;
+}
+
+.button:active {
+	-ms-transform: translateY(2px);
+	-webkit-transform: translateY(2px);
+	transform: translateY(2px);
+	box-shadow: none;
+}
+
+/*マップのメニュー*/
+.mapmenu {
+	color: #fff;
+	font-size: 14px;
+	*zoom: 1;
+	list-style-type: none;
+	background: #4d639f;
+}
+
+.mapmenu:before, .mapmenu:after {
+	content: "";
+	display: table;
+}
+
+.mapmenu:after {
+	clear: both;
+}
+
+.mapmenu li {
+	width: 320px;
+	float: left;
+	position: relative;
+}
+
+.mapmenu li a {
+	color: #fff;
+	text-align: center;
+	padding: 15px 15px 15px;
+	display: block;
+	line-height: 1;
+}
+
+.mapmenu li ul {
+	z-index: 9999;
+	position: absolute;
+	float: left;
+	display: none;
+}
+
+.mapmenu li:hover ul {
+	display: block;
+}
+
+.mapmenu li ul li a {
+	text-align: center;
+	padding: 14px 0px;
+	background: #4d639f;
+	border-top: 0px solid #2c4b79;
+	display: block;
+}
+
+.mapmenu li:hover>a {
+	background: #2c4b79;
+}
+
+.mapmenu li a:hover {
+	background: #2c4b79;
+}
+
+#category {
+	display: table;
+}
+
+#prefecture {
+	width: 25%;
+	display: table;
+}
+
+/*マップ*/
+.map {
+	width: 960px;
+	height: 600px;
+	margin: 0;
+	padding: 0;
+	border-left: 0;
+	border: 0px solid #0066ff;
+}
+
+/*フッター*/
+.footer {
+	text-align: center;
+	font-size: 20px;
+	font-family: 'Oswald', sans-serif;
+	height: 100px;
+	margin: 0 -500%;
+	margin-top: 10.0em;
+	padding: 0 500%;
+	background-image: url("tytle_img.jpg");
+	opacity: 0.5;
+}

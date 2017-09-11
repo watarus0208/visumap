@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/myapp_2_retry_maven_project-0.0.1-SNAPSHOT.war
