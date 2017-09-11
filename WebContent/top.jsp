@@ -1,25 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Oswald:700">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-<script type="text/javascript" charset="utf-8"
-	src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-<!--jQuery Migrateを有効化-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:700">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<script type="text/javascript" charset="utf-8" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPTFJbU1lWGk0bjBuNiZzPWNvbnN1bWVyc2VjcmV0Jng9MmY-"></script>
-<script type="text/javascript" charset="utf-8"
-	src="js/showPrefecture.js"></script>
-
+<script type="text/javascript" charset="utf-8" src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPTFJbU1lWGk0bjBuNiZzPWNvbnN1bWVyc2VjcmV0Jng9MmY-"></script>
+<script type="text/javascript" charset="utf-8" src="js/showPrefecture.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/hokkaido1.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/hokkaido2.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/hokkaido3.js"></script>
@@ -327,11 +319,9 @@
 <script type="text/javascript" charset="utf-8" src="js/okinawa37.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/okinawa38.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/okinawa39.js"></script>
-
 <title>市町村情報可視化マップ | カテゴリと都道府県を選択するページです</title>
 </head>
 <body>
-
 	<script type="text/javascript">
 		var map; //YOLP地図オブジェクト
 		var blankmap; //白地図レイヤー
@@ -392,41 +382,37 @@
 				var array = latlng.toString().split(",");
 
 				//reverseGeoCoderAPIへpost
-				$.getJSON(
-					"https://map.yahooapis.jp/geoapi/V1/reverseGeoCoder"
-					+ "?callback=?&output=json"
-					+ "&appid=dj00aiZpPUlWMUtRcGsxemYzVCZzPWNvbnN1bWVyc2VjcmV0Jng9ODI-",
+				$.getJSON("https://map.yahooapis.jp/geoapi/V1/reverseGeoCoder"
+						+ "?callback=?&output=json"
+						+ "&appid=dj00aiZpPUlWMUtRcGsxemYzVCZzPWNvbnN1bWVyc2VjcmV0Jng9ODI-",
 					{
 						lat : array[0],
 						lon : array[1]
-					})
+					}).done(function(data) {
+						//都道府県名:Nameと都道府県コード:Codeを取得
+						//国外を選択時
+						if (data.Feature == undefined) {
+							return;
 
-				.done(function(data) {
-					//都道府県名:Nameと都道府県コード:Codeを取得
+						//住居表示外を選択時
+						} else if (data.Feature[0].Property.Address == "") {
+							return;
 
-					//国外を選択時
-					if (data.Feature == undefined) {
-						return;
+						//正常動作時
+						} else {
+							var name = data.Feature[0].Property.AddressElement[0].Name;
+							var code = data.Feature[0].Property.AddressElement[0].Code;
+						}
 
-					//住居表示外を選択時
-					} else if (data.Feature[0].Property.Address == "") {
-						return;
+						//都道府県を表示
+						showPrefecture(code);
 
-					//正常動作時
-					} else {
-						var name = data.Feature[0].Property.AddressElement[0].Name;
-						var code = data.Feature[0].Property.AddressElement[0].Code;
-					}
+						//都道府県をメニューバーへ表示
+						changeText(name,'prefecture_menu');
 
-					//都道府県を表示
-					showPrefecture(code);
-
-					//都道府県をメニューバーへ表示
-					changeText(name,'prefecture_menu');
-
-					//都道府県をinputタグへ設定
-					setInputValue(code,'prefecture_input');
-				});
+						//都道府県をinputタグへ設定
+						setInputValue(code,'prefecture_input');
+					});
 			});
 		}
 
@@ -440,83 +426,60 @@
 		}
 	</script>
 
-
 	<!-- タイトルとメニュー -->
 	<%@ include file="/header.jsp"%>
-
 
 	<!-- 本文 -->
 	<h2 class="section1">
 		<i class="fa fa-map-marker"></i> 市町村情報可視化マップ
 	</h2>
 	<p style="border-bottom: 1px solid #999999;"></p>
-
-
 	<h3 class="section2">使い方</h3>
 	<p class="sentence">
 		下のメニューからカテゴリと都道府県を選択してください。<br />
 		都道府県は地図をクリックしても選択できます。<br />
-		選択したら表示をクリックするとカテゴリ情報が地図へ表示されます。<br />
-		<br />
+		選択したら表示をクリックするとカテゴリ情報が地図へ表示されます。<br /> <br />
 	</p>
-
 
 	<!-- マップメニュー -->
 	<form name="Menu" action="./SelectCategoryServlet" method="post">
 		<ul class="mapmenu">
-
 			<!-- カテゴリ選択メニュー -->
 			<li><a id="category_menu">カテゴリ</a>
 				<ul>
 					<c:forEach items="${categories}" var="category">
-						<li id="category">
-							<a
-								onclick="changeText('${category.name}','category_menu');
-								setInputValue('${category.id}','category_input');">
-									${category.name}
-							</a>
-						</li>
+						<li id="category"><a onclick="changeText('${category.name}','category_menu');setInputValue('${category.id}','category_input');">
+							${category.name}
+						</a></li>
 					</c:forEach>
-				</ul></li>
-
+				</ul>
+			</li>
 			<!-- 都道府県選択メニュー -->
 			<li><a id="prefecture_menu">都道府県 </a>
 				<ul>
 					<c:forEach items="${prefectures}" var="prefecture">
-						<li id="prefecture">
-							<a
-								onclick="changeText('${prefecture.name}','prefecture_menu');
-								map.clearFeatures();
-								showPrefecture('${prefecture.id}');
+						<li id="prefecture"><a onclick="changeText('${prefecture.name}','prefecture_menu'); map.clearFeatures(); showPrefecture('${prefecture.id}');
 								setInputValue('${prefecture.id}','prefecture_input');">${prefecture.name}
-							</a>
-						</li>
+						</a></li>
 					</c:forEach>
-				</ul></li>
-
+				</ul>
+			</li>
 			<!-- 結果表示メニュー -->
-			<li>
-				<input type="hidden" name="action" value="list">
+			<li><input type="hidden" name="action" value="list">
 				<input id="category_input" type="hidden" name="category_id" value="0">
 				<input id="prefecture_input" type="hidden" name="prefecture_id" value="">
-
-				<a href="javascript:document.Menu.submit()" style="text-decoration: none">
-					表 示
-				</a>
+				<a href="javascript:document.Menu.submit()" style="text-decoration: none"> 表 示 </a>
 			</li>
 		</ul>
 	</form>
-
 
 	<!-- マップ -->
 	<div class="map">
 		<div id="map" style="width: 960px; height: 640px"></div>
 	</div>
-
 	<noscript>
 		<div>ブラウザのJavaScriptが無効となっています。正常に動作しない可能性があります。</div>
 	</noscript>
-
 
 	<!-- フッター -->
 	<%@ include file="/footer.jsp"%>

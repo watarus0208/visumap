@@ -6,32 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Oswald:700">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:700">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <title>ホーム | 制作した作品に関する概要を説明します</title>
 </head>
-
 <body>
 	<!-- タイトルとメニュー -->
 	<%@ include file="/header.jsp"%>
 
-
 	<!-- 本文 -->
 	<div class="box">
-		<h2 class="section1">
-			<i class="fa fa-map-marker"></i> 市町村情報可視化マップ
-		</h2>
+		<h2 class="section1"><i class="fa fa-map-marker"></i> 市町村情報可視化マップ</h2>
 	</div>
 	<div class="box" style="margin: 0 0 0 -500px; padding: 0 0 0 500px;">
-		<a class="button" href="/SelectCategoryServlet?action=top">
-			<i class="fa fa-chevron-circle-right"></i> マップへGO
-		</a>
+		<a class="button" href="/SelectCategoryServlet?action=top"><i class="fa fa-chevron-circle-right"></i> マップへGO</a>
 	</div>
 	<p style="border-bottom: 1px solid #999999;"></p>
-
 
 	<h3 class="section2">プログラムの概要</h3>
 	<p class="sentence">
@@ -99,9 +89,7 @@
 		ソースコードはGitHubにて公開しています。 [リンク貼り付け予定] <br />
 	</p>
 
-
 	<!-- フッター -->
 	<%@ include file="/footer.jsp"%>
-
 </body>
 </html>
